@@ -9,7 +9,10 @@ public class Product {
     private int stockQuantity;
     public Product(String newName, double newPrice, String newCategory, int newStockQuantity) {
         name = newName;
-        id = LocalDateTime.now().toString();
+        id = LocalDateTime.now().toString() + newCategory;
+        category = newCategory;
+        price = newPrice;
+        stockQuantity = newStockQuantity;
 
     }
 
