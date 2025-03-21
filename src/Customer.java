@@ -6,12 +6,43 @@ public class Customer {
     private String lastName;
     private String email;
     private boolean isLoyalCustomer;
-    public Customer(String firstName, String lastName, String email, boolean isLoyalCustomer) {
-        id = firstName.charAt(0) + lastName + LocalDateTime.now().toString();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.isLoyalCustomer = isLoyalCustomer;
-
+    public Customer(String newFirstName, String newLastName, String newEmail, boolean newIsLoyalCustomer) {
+        id = newFirstName.charAt(0) + newLastName + LocalDateTime.now().toString();
+        this.firstName = newFirstName;
+        this.lastName = newLastName;
+        this.email = newEmail;
+        this.isLoyalCustomer = newIsLoyalCustomer;
     }
+
+    public String getId() {
+        return id;
+    }
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public boolean isLoyalCustomer() {
+        return isLoyalCustomer;
+    }
+    public void setLoyalCustomer(boolean isLoyalCustomer) {
+        this.isLoyalCustomer = isLoyalCustomer;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 }
