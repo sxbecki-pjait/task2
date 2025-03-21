@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Customer {
     private String id;
@@ -7,7 +8,7 @@ public class Customer {
     private String email;
     private boolean isLoyalCustomer;
     public Customer(String newFirstName, String newLastName, String newEmail, boolean newIsLoyalCustomer) {
-        id = newFirstName.charAt(0) + newLastName + LocalDateTime.now().toString();
+        id = UUID.randomUUID().toString();
         this.firstName = newFirstName;
         this.lastName = newLastName;
         this.email = newEmail;
@@ -45,10 +46,11 @@ public class Customer {
         this.email = email;
     }
     public void displayInfo() {
-        System.out.println("First Name: " + firstName);
-        System.out.println("Last Name: " + lastName);
-        System.out.println("Email: " + email);
-        System.out.println("IsLoyalCustomer: " + isLoyalCustomer);
+//        System.out.println("First Name: " + firstName);
+//        System.out.println("Last Name: " + lastName);
+//        System.out.println("Email: " + email);
+//        System.out.println("IsLoyalCustomer: " + isLoyalCustomer);
+        System.out.println(firstName + " " + lastName + " " + email + " " + isLoyalCustomer + " " + id);
     }
 
 }

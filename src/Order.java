@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class Order {
     private String id;
@@ -10,7 +11,7 @@ public class Order {
     private String date;
     private String status;
     public Order(String customerID, List<Product> products, List<Integer> quantities, String date, String status) {
-        id = customerID+ LocalDateTime.now();
+        id = UUID.randomUUID().toString();
         this.customerID = customerID;
         this.products = products;
         this.quantities = quantities;
@@ -54,13 +55,13 @@ public class Order {
         this.status = newstatus;
     }
     public void displayInfo(){
-        System.out.println("CustomerID: " + customerID);
-        System.out.println("Products: ");
+        System.out.println("    Order ID: " + id);
+        System.out.println("        CustomerID: " + customerID);
+        System.out.println("        Products: ");
         for(int i = 0; i < products.size(); i++){
-            System.out.println("    - " + products.get(i).getName() + quantities.get(i));
+            System.out.println("            - " + products.get(i).getName() + "      x " + quantities.get(i));
         }
-        System.out.println("Quantities: " + quantities);
-        System.out.println("Date: " + date);
-        System.out.println("Status: " + status);
+        System.out.println("        Date: " + date);
+        System.out.println("        Status: " + status);
     }
 }

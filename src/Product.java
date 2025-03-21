@@ -1,5 +1,6 @@
 import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Product {
     private String name;
@@ -9,7 +10,7 @@ public class Product {
     private int stockQuantity;
     public Product(String newName, double newPrice, String newCategory, int newStockQuantity) {
         name = newName;
-        id = LocalDateTime.now().toString() + newCategory;
+        id = UUID.randomUUID().toString();
         category = newCategory;
         price = newPrice;
         stockQuantity = newStockQuantity;
@@ -48,11 +49,11 @@ public class Product {
     }
 
     public void displayInfo(){
-        System.out.println("Name: " + name);
-        System.out.println("ID: " + id);
-        System.out.println("Category: " + category);
-        System.out.println("Price: " + price);
-        System.out.println("Stock Quantity: " + stockQuantity);
+        System.out.println("    ID: " + id);
+        System.out.println("        Name: " + name);
+        System.out.println("        Category: " + category);
+        System.out.println("        Price: " + price);
+        System.out.println("        Stock Quantity: " + stockQuantity);
     }
 
 }
