@@ -44,5 +44,11 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
+    public void displayInfo() {
+        System.out.println("First Name: " + firstName);
+        System.out.println("Last Name: " + lastName);
+        System.out.println("Email: " + email);
+        System.out.println("IsLoyalCustomer: " + isLoyalCustomer);
+    }
 
 }

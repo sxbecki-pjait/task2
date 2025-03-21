@@ -53,5 +53,14 @@ public class Order {
     public void setStatus(String newstatus) {
         this.status = newstatus;
     }
-
+    public void displayInfo(){
+        System.out.println("CustomerID: " + customerID);
+        System.out.println("Products: ");
+        for(int i = 0; i < products.size(); i++){
+            System.out.println("    - " + products.get(i).getName() + quantities.get(i));
+        }
+        System.out.println("Quantities: " + quantities);
+        System.out.println("Date: " + date);
+        System.out.println("Status: " + status);
+    }
 }

@@ -47,5 +47,12 @@ public class Product {
         stockQuantity = newStockQuantity;
     }
 
+    public void displayInfo(){
+        System.out.println("Name: " + name);
+        System.out.println("ID: " + id);
+        System.out.println("Category: " + category);
+        System.out.println("Price: " + price);
+        System.out.println("Stock Quantity: " + stockQuantity);
+    }
 
 }
