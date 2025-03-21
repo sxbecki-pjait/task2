@@ -68,4 +68,25 @@ public class ComputerStore {
         }
         System.out.println("===========================================");
     }
+    public void changeOrderStatus(String orderID, String newStatus) {
+        for(Order order : orders) {
+            if(order.getId().equals(orderID)) {
+                order.setStatus(newStatus);
+            }
+        }
+    }
+    public void displayProductsInCategory(String category) {
+        for(Product product : offeredProducts) {
+            if(product.getCategory().equals(category)) {
+                product.displayInfo();
+            }
+        }
+    }
+    public void displayCustomerOrders(String customerID) {
+        for(Order order : orders) {
+            if(customerID.equals(order.getCustomerID())) {
+                order.displayInfo();
+            }
+        }
+    }
 }
