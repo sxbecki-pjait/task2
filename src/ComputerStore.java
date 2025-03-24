@@ -36,6 +36,9 @@ public class ComputerStore {
             customerCount++;
             addCustomer(customer);
         }
+        else{
+            customer.setLoyalCustomer(true);
+        }
         System.out.println("Created Order!");
     }
 

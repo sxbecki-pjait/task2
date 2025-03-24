@@ -59,9 +59,17 @@ public class Order {
         System.out.println("        CustomerID: " + customerID);
         System.out.println("        Products: ");
         for(int i = 0; i < products.size(); i++){
-            System.out.println("            - " + products.get(i).getName() + "      x " + quantities.get(i));
+            int chars = 50 - products.get(i).getName().length();
+            System.out.print("            - " + products.get(i).getName());
+            for(int j = 0; j < chars; j++){
+                System.out.print(" ");
+            }
+            System.out.print("x " + quantities.get(i));
+            System.out.println();
         }
         System.out.println("        Date: " + date);
         System.out.println("        Status: " + status);
+        System.out.println();
+
     }
 }

@@ -49,7 +49,7 @@ public class Product {
     }
 
     public void displayInfo(){
-        System.out.println("    ID: " + id);
+        System.out.println("    Product ID: " + id);
         System.out.println("        Name: " + name);
         System.out.println("        Category: " + category);
         System.out.println("        Price: " + price);
