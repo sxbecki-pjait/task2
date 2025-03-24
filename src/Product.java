@@ -54,6 +54,7 @@ public class Product {
         System.out.println("        Category: " + category);
         System.out.println("        Price: " + price);
         System.out.println("        Stock Quantity: " + stockQuantity);
+        System.out.println();
     }
 
 }

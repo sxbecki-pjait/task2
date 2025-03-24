@@ -26,31 +26,41 @@ public class ComputerStore {
     public void addCustomer(Customer customer) {
         customers.add(customer);
     }
+
     public void createOrder(Customer customer, List<Product> products, List<Integer> quantities) {
         Order o = new Order(customer.getId(), products, quantities, LocalDateTime.now().toString(), "In Progress");
+        updateStockAfterOrder(o);
         orders.add(o);
         orderCount++;
         if (!customers.contains(customer)){
             customerCount++;
-            customers.add(customer);
+            addCustomer(customer);
         }
-        updateStockAfterOrder(o);
         System.out.println("Created Order!");
     }
 
-    public void updateStockAfterOrder(Order orderNow) {
-        List<Product> products = orderNow.getProducts();
-        System.out.println("doszlo");
-//        for (Integer i : orderNow.getQuantities()) {
-//            if
-//        }
-        for(int i = 0; i < products.size(); i++){
-            if(products.get(i).getId() == offeredProducts.get(i).getId()){
-                offeredProducts.get(i).setStockQuantity(offeredProducts.get(i).getStockQuantity() - orderNow.getQuantities().get(i));
+    public boolean updateStockAfterOrder(Order orderNow) {
+        boolean result = true;
+        int counter = 0;
+        for(Product p : orderNow.getProducts()){
+            String id = p.getId();
+            for(Product pOnStock : offeredProducts){
+                if(pOnStock.getId().equals(id)){
+                    if(pOnStock.getStockQuantity() - orderNow.getQuantities().get(counter) <=-1){
+                        System.out.println("Not enough stock!");
+                        result = false;
+                        break;
+                    }
+                    pOnStock.setStockQuantity(pOnStock.getStockQuantity() - orderNow.getQuantities().get(counter));
+                    counter++;
+                }
             }
         }
+        return result;
     }
     public void displayInfo(){
+        System.out.println();
+        System.out.println();
         System.out.println("===========================================");
         System.out.println("Customers: ");
         for(Customer customer : customers) {
@@ -66,7 +76,11 @@ public class ComputerStore {
         for(Product product : offeredProducts) {
             product.displayInfo();
         }
+        System.out.println();
+        System.out.println("Order count: " + orderCount);
         System.out.println("===========================================");
+        System.out.println();
+        System.out.println();
     }
     public void changeOrderStatus(String orderID, String newStatus) {
         for(Order order : orders) {
