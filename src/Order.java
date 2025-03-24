@@ -10,13 +10,15 @@ public class Order {
     private List<Integer> quantities;
     private String date;
     private String status;
-    public Order(String customerID, List<Product> products, List<Integer> quantities, String date, String status) {
+    private boolean isCustomerLoyal;
+    public Order(String customerID, List<Product> products, List<Integer> quantities, String date, String status, boolean isCustomerLoyal) {
         id = UUID.randomUUID().toString();
         this.customerID = customerID;
         this.products = products;
         this.quantities = quantities;
         this.date = date;
         this.status = status;
+        this.isCustomerLoyal = isCustomerLoyal;
     }
     public String getId() {
         return id;
@@ -57,6 +59,7 @@ public class Order {
     public void displayInfo(){
         System.out.println("    Order ID: " + id);
         System.out.println("        CustomerID: " + customerID);
+        System.out.println("        Loyal Customer: " + isCustomerLoyal);
         System.out.println("        Products: ");
         for(int i = 0; i < products.size(); i++){
             int chars = 50 - products.get(i).getName().length();
@@ -64,12 +67,30 @@ public class Order {
             for(int j = 0; j < chars; j++){
                 System.out.print(" ");
             }
+
             System.out.print("x " + quantities.get(i));
             System.out.println();
         }
+        double totalPrice = calculateTotalValue();
+        double dsciountVal = applyDiscount(isCustomerLoyal)?Math.round((totalPrice*0.1)*100)/100.0:0;
+        double finalPrice = Math.round((totalPrice - dsciountVal)*100)/100.0;
         System.out.println("        Date: " + date);
         System.out.println("        Status: " + status);
+        System.out.println("        Total Price w/o Discount: " + totalPrice);
+        System.out.println("        Membership Discount: " + dsciountVal);
+        System.out.println("        Total Price w/ Discount: " + finalPrice);
         System.out.println();
 
+    }
+    public boolean applyDiscount(boolean isLoyal){
+        return isLoyal;
+    }
+    public double calculateTotalValue(){
+        double total = 0;
+        for(int i = 0; i < products.size(); i++){
+            total += products.get(i).getPrice() * quantities.get(i);
+        }
+        total = total * 100;
+        return Math.round(total)/100.0;
     }
 }

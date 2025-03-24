@@ -46,11 +46,11 @@ public class Customer {
         this.email = email;
     }
     public void displayInfo() {
-//        System.out.println("    First Name: " + firstName);
-//        System.out.println("    Last Name: " + lastName);
-//        System.out.println("    Email: " + email);
-//        System.out.println("    IsLoyalCustomer: " + isLoyalCustomer);
-        System.out.println("    " + firstName + " " + lastName + " " + email + " " + isLoyalCustomer + " " + id);
+        System.out.println("    ID: " + id);
+        System.out.println("    Full Name: " + firstName + " " + lastName);
+        System.out.println("    Email: " + email);
+        System.out.println("    IsLoyalCustomer: " + isLoyalCustomer);
+        System.out.println();
     }
 
 }

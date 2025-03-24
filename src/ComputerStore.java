@@ -18,6 +18,10 @@ public class ComputerStore {
         this.orders = new ArrayList<Order>();
     }
 
+    public List<Order> getOrders(){
+        return orders;
+    }
+
     public void addProduct(Product product) {
         offeredProducts.add(product);
         productCount++;
@@ -28,10 +32,6 @@ public class ComputerStore {
     }
 
     public void createOrder(Customer customer, List<Product> products, List<Integer> quantities) {
-        Order o = new Order(customer.getId(), products, quantities, LocalDateTime.now().toString(), "In Progress");
-        updateStockAfterOrder(o);
-        orders.add(o);
-        orderCount++;
         if (!customers.contains(customer)){
             customerCount++;
             addCustomer(customer);
@@ -39,6 +39,10 @@ public class ComputerStore {
         else{
             customer.setLoyalCustomer(true);
         }
+        Order o = new Order(customer.getId(), products, quantities, LocalDateTime.now().toString(), "In Progress", customer.isLoyalCustomer());
+        updateStockAfterOrder(o);
+        orders.add(o);
+        orderCount++;
         System.out.println("Created Order!");
     }
 
@@ -85,14 +89,15 @@ public class ComputerStore {
         System.out.println();
         System.out.println();
     }
-    public void changeOrderStatus(String orderID, String newStatus) {
+    public void changeOrderStatus(String orderID) {
         for(Order order : orders) {
             if(order.getId().equals(orderID)) {
-                order.setStatus(newStatus);
+                order.setStatus("Finished");
             }
         }
     }
     public void displayProductsInCategory(String category) {
+        System.out.println("Products in category: ");
         for(Product product : offeredProducts) {
             if(product.getCategory().equals(category)) {
                 product.displayInfo();
@@ -100,6 +105,7 @@ public class ComputerStore {
         }
     }
     public void displayCustomerOrders(String customerID) {
+        System.out.println("Customer's Orders: ");
         for(Order order : orders) {
             if(customerID.equals(order.getCustomerID())) {
                 order.displayInfo();
